@@ -24,7 +24,7 @@
     // Options
     options = _isObject(options) ? options : {};
     this.elementId = (typeof options.elementId === "string") ? options.elementId : "gitGraph";
-    this.author = (typeof options.author === "string") ? options.author : "Sergio Flores <saxo-guy@epic.com>";
+    this.author = (typeof options.author === "string") ? options.author : "";
     this.reverseArrow = _booleanOptionOr(options.reverseArrow, false);
 
     // Template management
@@ -1090,13 +1090,13 @@
     this.date = options.date || new Date().toUTCString();
     this.detail = options.detail || null;
     this.sha1 = options.sha1 || (Math.random(100)).toString(16).substring(3, 10);
-    this.message = options.message || "He doesn't like George Michael! Boooo!";
+    this.message = options.message || "Commit";
     this.commitDotText = options.commitDotText;
     this.arrowDisplay = options.arrowDisplay;
     this.messageDisplay = _booleanOptionOr(options.messageDisplay, this.template.commit.message.display);
     this.messageAuthorDisplay = _booleanOptionOr(options.messageAuthorDisplay, this.template.commit.message.displayAuthor);
     this.messageBranchDisplay = _booleanOptionOr(options.messageBranchDisplay, this.template.commit.message.displayBranch);
-    this.messageHashDisplay = _booleanOptionOr(options.messageHashDisplay, this.template.commit.message.displayHash);
+    this.messageHashDisplay = false;
     this.messageColor = options.messageColor || options.color;
     this.messageFont = options.messageFont || this.template.commit.message.font;
     this.dotFont = options.dotFont || this.template.commit.dot.font;
