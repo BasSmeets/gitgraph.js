@@ -61,7 +61,13 @@ feature.commit("feature/VFDE-XXX-*");
 var release = develop.branch({
   name: "release/4.x",
 });
-release.commit("Creation of release/4.x branch");
+
+release.commit({
+  message: "Creation of release/4.x branch",
+  tag: "tagged 4.x.0",
+  displayTagBox: true
+});
+
 
 var hotfix = release.branch({
   name: "hotfix/*"
@@ -82,8 +88,11 @@ develop.checkout();
 feature.merge();
 
 //merge hotfix into release
-release.checkout();
-hotfix.merge();
+hotfix.merge(release, {
+  message: "Merged hotfix into release to create a new release",
+  tag: "tagged 4.x.1"
+})
+
 
 develop.checkout();
 hotfix.merge();

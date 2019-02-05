@@ -1096,7 +1096,7 @@
     this.messageDisplay = _booleanOptionOr(options.messageDisplay, this.template.commit.message.display);
     this.messageAuthorDisplay = _booleanOptionOr(options.messageAuthorDisplay, this.template.commit.message.displayAuthor);
     this.messageBranchDisplay = _booleanOptionOr(options.messageBranchDisplay, this.template.commit.message.displayBranch);
-    this.messageHashDisplay = false;
+    this.messageHashDisplay = _booleanOptionOr(options.messageHashDisplay, this.template.commit.message.displayHash);;
     this.messageColor = options.messageColor || options.color;
     this.messageFont = options.messageFont || this.template.commit.message.font;
     this.dotFont = options.dotFont || this.template.commit.dot.font;
@@ -1529,7 +1529,7 @@
             },
             message: {
               color: "black"
-            }
+            },
           },
           arrow: {
             size: 16,
