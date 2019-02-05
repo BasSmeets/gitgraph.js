@@ -80,12 +80,13 @@ var hotfix = release.branch({
 develop.checkout();
 hotfix.merge();
 
-hotfix.commit('hotfix/fixed bug');
+
 feature.commit('feature/VFDE-XXX-*').commit('feature/VFDE-XXX-*').commit('feature/VFDE-XXX-*');
 
 //merge feature into develop
 develop.checkout();
 feature.merge();
+hotfix.commit('hotfix/fixed bug');
 
 //merge hotfix into release
 hotfix.merge(release, {
