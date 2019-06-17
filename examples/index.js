@@ -48,55 +48,29 @@ var gitGraph = new GitGraph(config);
  ************************/
 
 // Create branch named "master"
-var develop = gitGraph.branch("develop-wave4");
+var develop = gitGraph.branch("develop-wave4.3");
+var release = gitGraph.branch("release/4.15.0");
 
 // Commit on HEAD Branch which is "master"
 develop.commit("Initial commit");
+release.commit("Initial commit");
 
-// Create feature from "develop"
-var feature = develop.branch("feature/*")
-feature.commit("feature/VFDE-XXX-*");
+// Create developftcr from "release"
+var developftcr = release.branch("develop-wave4FTCR")
+developftcr.commit("feature/VFDED1FTS-123-*");
+develop.commit("feature/VFDED1FTS-123-*");
+developftcr.commit("feature/VFDED1FTS-124-*");
+develop.commit("feature/VFDED1FTS-124-*");
+developftcr.commit("feature/VFDED1FTS-125-*");
+develop.commit("feature/VFDED1FTS-125-*");
 
 // Create a new "release" branch from "develop"
-var release = develop.branch({
-  name: "release/4.x",
+var releaseftcr = developftcr.branch({
+  name: "release/4.15.0-ftcr",
 });
 
-release.commit({
-  message: "Creation of release/4.x branch",
-  tag: "tagged 4.x.0",
+releaseftcr.commit({
+  message: "Creation of release/4.15.1-ftcr",
+  tag: "tagged 4.15.1-ftcr",
   displayTagBox: true
 });
-
-
-var hotfix = release.branch({
-  name: "hotfix/*"
-})
-
-// hotfix.commit('hotfix/fixed bug')
-// release.checkout();
-// hotfix.merge();
-
-develop.checkout();
-hotfix.merge();
-
-
-feature.commit('feature/VFDE-XXX-*').commit('feature/VFDE-XXX-*').commit('feature/VFDE-XXX-*');
-
-//merge feature into develop
-develop.checkout();
-feature.merge();
-hotfix.commit('hotfix/fixed bug');
-
-//merge hotfix into release
-hotfix.merge(release, {
-  message: "Merged hotfix into release to create a new release",
-  tag: "tagged 4.x.1"
-})
-
-
-develop.checkout();
-hotfix.merge();
-
-feature.commit('feature/VFDE-XXX-*');
-feature.merge();
